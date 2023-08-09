@@ -1,3 +1,4 @@
+CREATE USER 'tenhayday'@'localhost' IDENTIFIED BY '123456';
 create database phonestore;
 use phonestore;
 
@@ -281,6 +282,7 @@ FOREIGN KEY(customer_id) REFERENCES customers(customer_id)
 )engine = InnoDB;
 
 INSERT INTO Orders(order_id, seller_id, customer_id) VALUES ('A798EC16225E', 3, 1);
+INSERT INTO Orders(order_id, seller_id, customer_id) VALUES ('D2BD913A83B4', 2, 2);
 
 CREATE TABLE orderdetails(
 order_id VARCHAR(15) NOT NULL,
@@ -327,13 +329,9 @@ end$$
 delimiter ;
 
 INSERT INTO OrderDetails(order_id, phone_imei) VALUES ('A798EC16225E', 378541254259880);
-INSERT INTO OrderDetails(order_id, phone_imei) VALUES ('A798EC16225E', 378541254259890);
-INSERT INTO OrderDetails(order_id, phone_imei) VALUES ('A798EC16225E', 378541254259899);
-INSERT INTO OrderDetails(order_id, phone_imei) VALUES ('A798EC16225E', 378541254259100);
-INSERT INTO OrderDetails(order_id, phone_imei) VALUES ('A798EC16225E', 378532132329126);
-INSERT INTO OrderDetails(order_id, phone_imei) VALUES ('A798EC16225E', 378432344259117);
-INSERT INTO OrderDetails(order_id, phone_imei) VALUES ('A798EC16225E', 378532132329124);
-INSERT INTO OrderDetails(order_id, phone_imei) VALUES ('A798EC16225E', 378543543559123);
+INSERT INTO OrderDetails(order_id, phone_imei) VALUES ('D2BD913A83B4', 378541254259890);
+
+
 
 CREATE TABLE discountpolicies(
 -- thong tin co ban cua discount
@@ -378,3 +376,16 @@ FOREIGN KEY (order_id) REFERENCES orders(order_id)
 --                 INNER JOIN imeis I ON I.phone_imei = OD.phone_imei
 --                 INNER JOIN phonedetails PD ON I.phone_detail_id = PD.phone_detail_id
 --                 INNER JOIN phones P ON PD.phone_id = P.phone_id
+
+GRANT SELECT ON brands to 'tenhayday'@'localhost'; 
+GRANT SELECT ON colors TO 'tenhayday'@'localhost';
+GRANT SELECT ON customers TO 'tenhayday'@'localhost';
+GRANT SELECT ON discountpolicies TO 'tenhayday'@'localhost';
+GRANT SELECT ON discountpolicydetails TO 'tenhayday'@'localhost';
+GRANT SELECT ON imeis TO 'tenhayday'@'localhost';
+GRANT SELECT ON orderdetails TO 'tenhayday'@'localhost';
+GRANT SELECT ON orders TO 'tenhayday'@'localhost';
+GRANT SELECT ON phonedetails TO 'tenhayday'@'localhost';
+GRANT SELECT ON phones TO 'tenhayday'@'localhost';
+GRANT SELECT ON romsizes TO 'tenhayday'@'localhost';
+GRANT SELECT ON staffs TO 'tenhayday'@'localhost';
